@@ -1,0 +1,71 @@
+{
+  "config": {
+    "instagram": "ribboun",
+    "whatsapp": "",
+    "anuncio": "Envíos a todo el país · 20% OFF abonando por transferencia",
+    "descuentoTransferencia": 20,
+    "cuotas": 3
+  },
+  "productos": [
+    {
+      "id": "funda-silicona",
+      "nombre": "Funda Silicona iPhone",
+      "categoria": "Fundas",
+      "descripcion": "Funda de silicona premium con interior de microfibra. Protección elegante para tu iPhone. Disponible para iPhone 12 al 16 Pro Max. Consultá colores disponibles.",
+      "precio": 28000,
+      "stock": 12,
+      "nuevo": true,
+      "imagenes": ["img/funda-1.svg", "img/funda-2.svg", "img/funda-3.svg"]
+    },
+    {
+      "id": "cargador-20w",
+      "nombre": "Cargador 20W USB-C",
+      "categoria": "Cargadores",
+      "descripcion": "Adaptador de corriente 20W USB-C de carga rápida. Cargá tu iPhone al 50% en 30 minutos. Calidad original.",
+      "precio": 32000,
+      "stock": 8,
+      "nuevo": false,
+      "imagenes": ["img/cargador-1.svg", "img/cargador-2.svg"]
+    },
+    {
+      "id": "cable-usbc-lightning",
+      "nombre": "Cable USB-C a Lightning 1m",
+      "categoria": "Cables",
+      "descripcion": "Cable de carga rápida USB-C a Lightning de 1 metro. Compatible con carga rápida 20W. Resistente y de máxima calidad.",
+      "precio": 15000,
+      "stock": 20,
+      "nuevo": false,
+      "imagenes": ["img/cable-1.svg", "img/cable-2.svg"]
+    },
+    {
+      "id": "auriculares-pro",
+      "nombre": "Auriculares Inalámbricos Pro",
+      "categoria": "Audio",
+      "descripcion": "Auriculares inalámbricos con cancelación de ruido y estuche de carga. Sonido premium y conexión instantánea con tu iPhone.",
+      "precio": 95000,
+      "stock": 4,
+      "nuevo": true,
+      "imagenes": ["img/auriculares-1.svg", "img/auriculares-2.svg"]
+    },
+    {
+      "id": "protector-camara",
+      "nombre": "Protector de Cámara",
+      "categoria": "Fundas",
+      "descripcion": "Protector de lentes de cámara en vidrio templado con marco metálico. Protección invisible para las cámaras de tu iPhone.",
+      "precio": 9500,
+      "stock": 15,
+      "nuevo": false,
+      "imagenes": ["img/protector-1.svg", "img/protector-2.svg"]
+    },
+    {
+      "id": "strap-phone",
+      "nombre": "Phone Strap con Cuentas",
+      "categoria": "Accesorios",
+      "descripcion": "Correa para celular con cuentas y detalles dorados. El accesorio que le da personalidad a tu funda. Hecho a mano.",
+      "precio": 7500,
+      "stock": 0,
+      "nuevo": false,
+      "imagenes": ["img/strap-1.svg", "img/strap-2.svg"]
+    }
+  ]
+}

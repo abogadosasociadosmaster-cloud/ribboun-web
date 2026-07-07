@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ribboun · Accesorios para iPhone</title>
+<meta name="description" content="Ribboun — Accesorios premium para iPhone y Apple. Fundas, cargadores, cables y más. Envíos a todo el país.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23F6E3D7'/><text x='50' y='68' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='55' fill='%234E3629'>R</text></svg>">
+<style>
+:root{
+  --crema:#FBF5F0; --blush:#F6E3D7; --blush2:#F1D7C6;
+  --marron:#4E3629; --marron2:#8A7263; --bronce:#B08D57;
+  --blanco:#FFFFFF; --sombra:0 10px 40px rgba(78,54,41,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--crema);color:var(--marron);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+
+/* Barra anuncio */
+.anuncio{background:var(--marron);color:var(--blush);text-align:center;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:.55rem 1rem}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;background:rgba(251,245,240,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(78,54,41,.08)}
+.header-in{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.5rem}
+.logo{font-family:'Pinyon Script',cursive;font-size:2.6rem;line-height:1;color:var(--marron)}
+.nav-links{display:flex;gap:1.8rem;align-items:center;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase}
+.nav-links a{opacity:.75;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.ig-btn{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--marron);border-radius:99px;padding:.45rem 1.1rem;transition:all .25s}
+.ig-btn:hover{background:var(--marron);color:var(--crema)}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--blush) 0%,var(--blush2) 55%,#EDD9CB 100%);text-align:center;padding:5.5rem 1.5rem 6rem}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.35)}
+.hero::before{width:420px;height:420px;top:-160px;left:-120px}
+.hero::after{width:520px;height:520px;bottom:-260px;right:-140px}
+.hero h1{position:relative;font-family:'Pinyon Script',cursive;font-weight:400;font-size:clamp(4rem,10vw,7rem);line-height:1.1}
+.hero p.tag{position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.15rem,2.4vw,1.5rem);color:var(--marron2);margin-top:.6rem}
+.hero .cta{position:relative;display:inline-block;margin-top:2.2rem;background:var(--marron);color:var(--crema);padding:.9rem 2.6rem;border-radius:99px;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;transition:transform .25s,box-shadow .25s}
+.hero .cta:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(78,54,41,.25)}
+
+/* Filtros */
+.filtros{max-width:1200px;margin:3.2rem auto 0;padding:0 1.5rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+.chip{border:1px solid rgba(78,54,41,.25);background:transparent;color:var(--marron);border-radius:99px;padding:.5rem 1.3rem;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
+.chip.on,.chip:hover{background:var(--marron);color:var(--crema);border-color:var(--marron)}
+
+/* Grid productos */
+.seccion-titulo{text-align:center;margin-top:3.5rem}
+.seccion-titulo h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:2.2rem;letter-spacing:.06em}
+.seccion-titulo span{display:block;width:52px;height:1px;background:var(--bronce);margin:1rem auto 0}
+.grid{max-width:1200px;margin:2.5rem auto 5rem;padding:0 1.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);gap:1.2rem}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{background:var(--blanco);border-radius:22px;overflow:hidden;box-shadow:var(--sombra);transition:transform .3s,box-shadow .3s;cursor:pointer;position:relative}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(78,54,41,.14)}
+.card .foto{aspect-ratio:1/1;overflow:hidden;background:var(--blush)}
+.card .foto img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .foto img{transform:scale(1.05)}
+.badge{position:absolute;top:14px;left:14px;background:var(--bronce);color:#fff;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:.32rem .8rem;border-radius:99px}
+.badge.sin{background:#a5a5a5}
+.badge.pocas{background:#c26a4a}
+.card .info{padding:1.3rem 1.4rem 1.6rem;text-align:center}
+.card h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.35rem;letter-spacing:.03em}
+.card .cat{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--marron2);margin-top:.15rem}
+.card .precio{font-size:1.15rem;font-weight:500;margin-top:.7rem}
+.card .transf{font-size:.82rem;color:var(--bronce);margin-top:.15rem}
+.card .cuotas{font-size:.78rem;color:var(--marron2);margin-top:.15rem}
+.card .ver{display:inline-block;margin-top:1rem;border:1px solid var(--marron);border-radius:99px;padding:.5rem 1.6rem;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;transition:all .25s}
+.card:hover .ver{background:var(--marron);color:var(--crema)}
+.card.agotado .foto img{filter:grayscale(.8);opacity:.7}
+
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(78,54,41,.45);backdrop-filter:blur(6px);z-index:100;display:none;align-items:center;justify-content:center;padding:1.2rem}
+.modal-bg.open{display:flex}
+.modal{background:var(--crema);border-radius:26px;max-width:920px;width:100%;max-height:92vh;overflow-y:auto;display:grid;grid-template-columns:1.05fr 1fr;position:relative;animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+@media(max-width:760px){.modal{grid-template-columns:1fr}}
+.modal .cerrar{position:absolute;top:14px;right:16px;z-index:5;background:var(--blanco);border:none;width:38px;height:38px;border-radius:50%;font-size:1.1rem;color:var(--marron);box-shadow:var(--sombra)}
+.carrusel{position:relative;background:var(--blush)}
+.carrusel .principal{aspect-ratio:1/1;overflow:hidden}
+.carrusel .principal img{width:100%;height:100%;object-fit:cover}
+.carrusel .flecha{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.85);border:none;width:40px;height:40px;border-radius:50%;font-size:1rem;color:var(--marron)}
+.carrusel .prev{left:12px}.carrusel .next{right:12px}
+.minis{display:flex;gap:.5rem;padding:.8rem;justify-content:center;flex-wrap:wrap}
+.minis img{width:58px;height:58px;object-fit:cover;border-radius:12px;cursor:pointer;border:2px solid transparent;opacity:.7;transition:all .2s}
+.minis img.on{border-color:var(--bronce);opacity:1}
+.modal .detalle{padding:2.4rem 2.2rem;display:flex;flex-direction:column;gap:.9rem}
+.modal .detalle .cat{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bronce)}
+.modal .detalle h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2rem;line-height:1.15}
+.modal .detalle .desc{font-weight:300;line-height:1.65;color:var(--marron2);font-size:.95rem}
+.modal .precio-box{border-top:1px solid rgba(78,54,41,.12);border-bottom:1px solid rgba(78,54,41,.12);padding:1rem 0}
+.modal .precio-box .p{font-size:1.7rem;font-weight:500}
+.modal .precio-box .t{color:var(--bronce);font-size:.95rem;margin-top:.2rem}
+.modal .precio-box .c{color:var(--marron2);font-size:.85rem;margin-top:.2rem}
+.modal .stock{font-size:.85rem;letter-spacing:.05em}
+.modal .stock b{color:#3e7d4f}
+.modal .stock.pocas b{color:#c26a4a}
+.modal .stock.sin b{color:#a5a5a5}
+.modal .btn-comprar{background:var(--marron);color:var(--crema);border:none;border-radius:99px;padding:1rem;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;transition:all .25s}
+.modal .btn-comprar:hover{box-shadow:0 10px 26px rgba(78,54,41,.3);transform:translateY(-2px)}
+.modal .btn-comprar:disabled{background:#b9aca2;cursor:not-allowed;transform:none;box-shadow:none}
+.modal .btn-ig{text-align:center;border:1px solid var(--marron);border-radius:99px;padding:.85rem;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;transition:all .25s}
+.modal .btn-ig:hover{background:var(--marron);color:var(--crema)}
+
+/* Footer */
+footer{background:var(--marron);color:var(--blush);text-align:center;padding:3.5rem 1.5rem 2rem;margin-top:2rem}
+footer .logo-f{font-family:'Pinyon Script',cursive;font-size:3rem;color:var(--blush)}
+footer p{font-family:'Cormorant Garamond',serif;font-style:italic;opacity:.8;margin-top:.4rem}
+footer .redes{margin-top:1.4rem}
+footer .redes a{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(246,227,215,.4);border-radius:99px;padding:.55rem 1.4rem;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;transition:all .25s}
+footer .redes a:hover{background:var(--blush);color:var(--marron)}
+footer .mini{margin-top:2.2rem;font-size:.72rem;opacity:.45;letter-spacing:.08em}
+footer .mini a{text-decoration:underline}
+.vacio{text-align:center;color:var(--marron2);padding:3rem 1rem;grid-column:1/-1;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem}
+</style>
+</head>
+<body>
+
+<div class="anuncio" id="anuncio">Envíos a todo el país · 20% OFF abonando por transferencia</div>
+
+<header>
+  <div class="header-in">
+    <a class="logo" href="#">Ribboun</a>
+    <nav class="nav-links">
+      <a href="#productos">Productos</a>
+      <a class="ig-btn" id="igHeader" href="https://instagram.com/ribboun" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Ribboun</h1>
+  <p class="tag">Accesorios premium para tu iPhone — elegancia en cada detalle</p>
+  <a class="cta" href="#productos">Ver colección</a>
+</section>
+
+<div class="filtros" id="filtros"></div>
+
+<div class="seccion-titulo" id="productos">
+  <h2>Nuestra Colección</h2>
+  <span></span>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal" id="modal"></div>
+</div>
+
+<footer>
+  <div class="logo-f">Ribboun</div>
+  <p>Calidad, elegancia y diseño exclusivo</p>
+  <div class="redes">
+    <a id="igFooter" href="https://instagram.com/ribboun" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @ribboun
+    </a>
+  </div>
+  <div class="mini">© <span id="anio"></span> Ribboun · <a href="admin.html">Administración</a></div>
+</footer>
+
+<script>
+const FALLBACK = null; // se completa con products.json
+let DATA = null, filtroActual = "Todos", idx = 0, productoAbierto = null;
+
+const fmt = n => "$" + n.toLocaleString("es-AR", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+async function cargar(){
+  try{
+    const r = await fetch("products.json?v=" + Date.now());
+    DATA = await r.json();
+  }catch(e){
+    document.getElementById("grid").innerHTML = "<div class='vacio'>No se pudo cargar el catálogo. Si abriste el archivo localmente, subilo a GitHub Pages o usá un servidor local.</div>";
+    return;
+  }
+  const c = DATA.config || {};
+  if(c.anuncio) document.getElementById("anuncio").textContent = c.anuncio;
+  if(c.instagram){
+    const url = "https://instagram.com/" + c.instagram;
+    igHeader.href = url; igFooter.href = url;
+    igFooter.lastChild.textContent = " @" + c.instagram;
+  }
+  pintarFiltros(); pintar();
+}
+
+function pintarFiltros(){
+  const cats = ["Todos", ...new Set(DATA.productos.map(p => p.categoria))];
+  document.getElementById("filtros").innerHTML = cats.map(c =>
+    `<button class="chip ${c===filtroActual?"on":""}" onclick="setFiltro('${c}')">${c}</button>`).join("");
+}
+function setFiltro(c){ filtroActual = c; pintarFiltros(); pintar(); }
+
+function badge(p){
+  if(p.stock === 0) return `<span class="badge sin">Sin stock</span>`;
+  if(p.stock <= 5) return `<span class="badge pocas">Últimas unidades</span>`;
+  if(p.nuevo) return `<span class="badge">Nuevo</span>`;
+  return "";
+}
+
+function pintar(){
+  const c = DATA.config || {}, d = c.descuentoTransferencia || 0, cu = c.cuotas || 0;
+  const lista = DATA.productos.filter(p => filtroActual === "Todos" || p.categoria === filtroActual);
+  document.getElementById("grid").innerHTML = lista.length ? lista.map((p,i) => `
+    <article class="card ${p.stock===0?"agotado":""}" onclick="abrir('${p.id}')">
+      ${badge(p)}
+      <div class="foto"><img src="${p.imagenes[0]||""}" alt="${p.nombre}" loading="lazy"></div>
+      <div class="info">
+        <h3>${p.nombre}</h3>
+        <div class="cat">${p.categoria}</div>
+        <div class="precio">${fmt(p.precio)}</div>
+        ${d ? `<div class="transf">${fmt(p.precio*(1-d/100))} con Transferencia (${d}% OFF)</div>` : ""}
+        ${cu ? `<div class="cuotas">${cu} x ${fmt(p.precio/cu)} sin interés</div>` : ""}
+        <span class="ver">Ver detalle</span>
+      </div>
+    </article>`).join("") : "<div class='vacio'>No hay productos en esta categoría por ahora.</div>";
+}
+
+function abrir(id){
+  productoAbierto = DATA.productos.find(p => p.id === id);
+  idx = 0;
+  renderModal();
+  document.getElementById("modalBg").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function cerrar(){
+  document.getElementById("modalBg").classList.remove("open");
+  document.body.style.overflow = "";
+}
+document.getElementById("modalBg").addEventListener("click", e => { if(e.target.id === "modalBg") cerrar(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape") cerrar(); });
+
+function renderModal(){
+  const p = productoAbierto, c = DATA.config || {};
+  const d = c.descuentoTransferencia || 0, cu = c.cuotas || 0;
+  const stockTxt = p.stock === 0 ? `<span class="stock sin">Estado: <b>Sin stock</b> — consultanos por reposición</span>`
+    : p.stock <= 5 ? `<span class="stock pocas">Stock: <b>¡Últimas ${p.stock} unidades!</b></span>`
+    : `<span class="stock">Stock: <b>Disponible</b> (${p.stock} unidades)</span>`;
+  const msj = encodeURIComponent(`Hola Ribboun! Quiero comprar: ${p.nombre} (${fmt(p.precio)})`);
+  const wa = c.whatsapp ? `https://wa.me/${c.whatsapp}?text=${msj}` : null;
+  const ig = `https://ig.me/m/${c.instagram || "ribboun"}`;
+  document.getElementById("modal").innerHTML = `
+    <button class="cerrar" onclick="cerrar()">✕</button>
+    <div class="carrusel">
+      <div class="principal"><img id="imgP" src="${p.imagenes[idx]}" alt="${p.nombre}"></div>
+      ${p.imagenes.length > 1 ? `
+        <button class="flecha prev" onclick="mover(-1)">‹</button>
+        <button class="flecha next" onclick="mover(1)">›</button>
+        <div class="minis">${p.imagenes.map((im,i) => `<img src="${im}" class="${i===idx?"on":""}" onclick="irA(${i})">`).join("")}</div>` : ""}
+    </div>
+    <div class="detalle">
+      <span class="cat">${p.categoria}</span>
+      <h2>${p.nombre}</h2>
+      <p class="desc">${p.descripcion}</p>
+      <div class="precio-box">
+        <div class="p">${fmt(p.precio)}</div>
+        ${d ? `<div class="t">${fmt(p.precio*(1-d/100))} con Transferencia Bancaria (${d}% OFF)</div>` : ""}
+        ${cu ? `<div class="c">${cu} x ${fmt(p.precio/cu)} sin interés</div>` : ""}
+      </div>
+      ${stockTxt}
+      ${wa ? `<a class="btn-comprar" style="text-align:center" href="${p.stock ? wa : "#"}" target="_blank" rel="noopener" ${p.stock ? "" : "onclick='return false' disabled"}>${p.stock ? "Comprar por WhatsApp" : "Sin stock"}</a>`
+           : `<button class="btn-comprar" ${p.stock ? "" : "disabled"} onclick="window.open('${ig}','_blank')">${p.stock ? "Comprar por Instagram" : "Sin stock"}</button>`}
+      <a class="btn-ig" href="${ig}" target="_blank" rel="noopener">Consultar por Instagram</a>
+    </div>`;
+}
+function mover(n){
+  const t = productoAbierto.imagenes.length;
+  idx = (idx + n + t) % t; renderModal();
+}
+function irA(i){ idx = i; renderModal(); }
+
+document.getElementById("anio").textContent = new Date().getFullYear();
+cargar();
+</script>
+</body>
+</html>

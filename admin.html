@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ribboun · Administración</title>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--crema:#FBF5F0;--blush:#F6E3D7;--marron:#4E3629;--marron2:#8A7263;--bronce:#B08D57;--ok:#3e7d4f;--rojo:#b34a3a;--sombra:0 10px 40px rgba(78,54,41,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Jost',sans-serif;background:var(--crema);color:var(--marron)}
+.logo{font-family:'Pinyon Script',cursive;font-size:2.4rem}
+h2{font-family:'Cormorant Garamond',serif;font-weight:600}
+a{color:inherit}
+input,textarea,select{width:100%;padding:.65rem .9rem;border:1px solid rgba(78,54,41,.25);border-radius:12px;background:#fff;font-family:inherit;font-size:.92rem;color:var(--marron)}
+input:focus,textarea:focus{outline:2px solid var(--bronce)}
+label{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--marron2);display:block;margin:.9rem 0 .3rem}
+button{font-family:inherit;cursor:pointer;border:none;border-radius:99px;padding:.7rem 1.6rem;font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;transition:all .2s}
+.btn-p{background:var(--marron);color:var(--crema)}
+.btn-p:hover{box-shadow:0 8px 20px rgba(78,54,41,.3)}
+.btn-s{background:transparent;border:1px solid var(--marron);color:var(--marron)}
+.btn-s:hover{background:var(--marron);color:var(--crema)}
+.btn-d{background:transparent;border:1px solid var(--rojo);color:var(--rojo)}
+.btn-d:hover{background:var(--rojo);color:#fff}
+.wrap{max-width:1000px;margin:auto;padding:1.5rem}
+header{display:flex;align-items:center;justify-content:space-between;padding:.4rem 0 1rem;border-bottom:1px solid rgba(78,54,41,.12);margin-bottom:1.6rem;flex-wrap:wrap;gap:.6rem}
+.panel{background:#fff;border-radius:20px;padding:1.6rem;box-shadow:var(--sombra);margin-bottom:1.6rem}
+.fila{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.fila{grid-template-columns:1fr}}
+.prod{display:flex;align-items:center;gap:1rem;padding:.8rem;border:1px solid rgba(78,54,41,.1);border-radius:16px;margin-bottom:.7rem;flex-wrap:wrap}
+.prod img{width:56px;height:56px;object-fit:cover;border-radius:12px;background:var(--blush)}
+.prod .nom{flex:1;min-width:150px}
+.prod .nom b{font-weight:500}
+.prod .nom small{display:block;color:var(--marron2)}
+.prod .acc{display:flex;gap:.5rem}
+.prod .acc button{padding:.45rem 1rem;font-size:.72rem}
+.imgs-edit{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.4rem}
+.img-slot{width:92px;text-align:center}
+.img-slot .box{width:92px;height:92px;border:1.5px dashed rgba(78,54,41,.3);border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--blush);cursor:pointer;font-size:1.5rem;color:var(--marron2)}
+.img-slot img{width:100%;height:100%;object-fit:cover}
+.img-slot .quitar{margin-top:.3rem;padding:.2rem .7rem;font-size:.65rem}
+.aviso{padding:.9rem 1.2rem;border-radius:14px;font-size:.9rem;margin:.8rem 0;display:none}
+.aviso.ok{display:block;background:#e7f2ea;color:var(--ok)}
+.aviso.err{display:block;background:#f7e4e0;color:var(--rojo)}
+.centro{max-width:420px;margin:8vh auto;text-align:center}
+.oculto{display:none}
+.pill{font-size:.7rem;background:var(--blush);border-radius:99px;padding:.25rem .8rem;color:var(--marron2)}
+details summary{cursor:pointer;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--marron2);margin-bottom:.6rem}
+.mini-help{font-size:.8rem;color:var(--marron2);line-height:1.5;margin-top:.5rem}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="centro" id="vLogin">
+  <div class="logo">Ribboun</div>
+  <h2 style="margin:.4rem 0 1.4rem">Panel de Administración</h2>
+  <div class="panel" style="text-align:left">
+    <label>Correo de administradora</label>
+    <input type="email" id="logEmail" placeholder="tucorreo@gmail.com">
+    <label>Contraseña</label>
+    <input type="password" id="logPass" placeholder="••••••••">
+    <div class="aviso err" id="logErr"></div>
+    <button class="btn-p" style="width:100%;margin-top:1.2rem" onclick="login()">Ingresar</button>
+  </div>
+  <a href="index.html" style="font-size:.85rem;color:var(--marron2)">← Volver a la tienda</a>
+</div>
+
+<!-- PANEL -->
+<div class="wrap oculto" id="vPanel">
+<header>
+  <div class="logo">Ribboun <span class="pill">admin</span></div>
+  <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+    <a href="index.html" target="_blank"><button class="btn-s">Ver tienda</button></a>
+    <button class="btn-s" onclick="salir()">Salir</button>
+  </div>
+</header>
+
+<div class="aviso" id="aviso"></div>
+
+<!-- Config tienda -->
+<div class="panel">
+  <h2>Configuración de la tienda</h2>
+  <div class="fila">
+    <div><label>Usuario de Instagram</label><input id="cIg"></div>
+    <div><label>WhatsApp (con cód. país, ej: 5492610000000)</label><input id="cWa"></div>
+    <div><label>Texto barra superior</label><input id="cAnuncio"></div>
+    <div class="fila" style="gap:.6rem">
+      <div><label>% OFF transferencia</label><input id="cDesc" type="number" min="0" max="90"></div>
+      <div><label>Cuotas sin interés</label><input id="cCuotas" type="number" min="0" max="12"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Productos -->
+<div class="panel">
+  <h2 style="margin-bottom:1rem">Productos <span class="pill" id="cant"></span></h2>
+  <div id="lista"></div>
+  <button class="btn-p" style="margin-top:.6rem" onclick="editar(-1)">+ Agregar producto</button>
+</div>
+
+<!-- Editor de producto -->
+<div class="panel oculto" id="editor">
+  <h2 id="editTitulo">Editar producto</h2>
+  <div class="fila">
+    <div><label>Nombre</label><input id="eNombre"></div>
+    <div><label>Categoría</label><input id="eCat" list="cats" placeholder="Fundas, Cargadores, Cables, Audio..."><datalist id="cats"></datalist></div>
+    <div><label>Precio (ARS)</label><input id="ePrecio" type="number" min="0"></div>
+    <div><label>Stock (unidades)</label><input id="eStock" type="number" min="0"></div>
+  </div>
+  <label>Descripción</label>
+  <textarea id="eDesc" rows="3"></textarea>
+  <label style="display:flex;align-items:center;gap:.5rem;text-transform:none;font-size:.9rem;margin-top:1rem">
+    <input type="checkbox" id="eNuevo" style="width:auto"> Marcar como "Nuevo"
+  </label>
+  <label>Imágenes (hasta 4 — la primera es la portada)</label>
+  <div class="imgs-edit" id="imgsEdit"></div>
+  <input type="file" id="filePick" accept="image/*" class="oculto">
+  <div style="display:flex;gap:.6rem;margin-top:1.4rem;flex-wrap:wrap">
+    <button class="btn-p" onclick="guardarProducto()">Guardar producto</button>
+    <button class="btn-s" onclick="cerrarEditor()">Cancelar</button>
+  </div>
+</div>
+
+<!-- Publicar -->
+<div class="panel">
+  <h2>Publicar cambios</h2>
+  <p class="mini-help">Los cambios se publican en la web guardándolos en GitHub. Configurá una sola vez los datos del repositorio; luego solo tocá "Publicar en la web".</p>
+  <details style="margin-top:1rem">
+    <summary>Configuración de GitHub (una sola vez)</summary>
+    <div class="fila">
+      <div><label>Usuario GitHub</label><input id="ghUser" placeholder="ej: ribboun"></div>
+      <div><label>Repositorio</label><input id="ghRepo" placeholder="ej: ribboun-web"></div>
+      <div><label>Rama</label><input id="ghBranch" value="main"></div>
+      <div><label>Token de acceso (fine-grained, permiso Contents)</label><input id="ghToken" type="password" placeholder="github_pat_..."></div>
+    </div>
+    <p class="mini-help">El token se crea en GitHub → Settings → Developer settings → Fine-grained tokens, con permiso de lectura/escritura sobre "Contents" del repositorio. Se guarda solo en este navegador.</p>
+    <button class="btn-s" style="margin-top:.8rem" onclick="guardarGh()">Guardar configuración</button>
+  </details>
+  <div style="display:flex;gap:.6rem;margin-top:1.2rem;flex-wrap:wrap">
+    <button class="btn-p" onclick="publicar()" id="btnPub">Publicar en la web</button>
+    <button class="btn-s" onclick="descargarJson()">Descargar products.json</button>
+  </div>
+  <p class="mini-help">Si no configuraste GitHub, podés descargar el archivo <b>products.json</b> y subirlo manualmente al repositorio (reemplazando el existente).</p>
+</div>
+</div>
+
+<script>
+/* ============ ACCESO ============ */
+const ADMINS = ["barrionuevopilar0@gmail.com", "abogadosasociadosmaster@gmail.com"];
+const CLAVE = "ribboun2026"; // Cambiar esta contraseña antes de publicar
+
+let DATA = {config:{}, productos:[]};
+let editIdx = -1, slotActivo = 0, imgsTmp = [];
+
+function login(){
+  const e = logEmail.value.trim().toLowerCase(), p = logPass.value;
+  if(!ADMINS.includes(e) || p !== CLAVE){
+    logErr.textContent = "Correo o contraseña incorrectos."; logErr.className = "aviso err"; return;
+  }
+  sessionStorage.setItem("ribAdmin", e);
+  iniciar();
+}
+function salir(){ sessionStorage.removeItem("ribAdmin"); location.reload(); }
+
+/* ============ CARGA ============ */
+async function iniciar(){
+  vLogin.classList.add("oculto"); vPanel.classList.remove("oculto");
+  try{
+    const r = await fetch("products.json?v=" + Date.now());
+    DATA = await r.json();
+  }catch(e){ msg("No se pudo cargar products.json (¿estás abriendo el archivo localmente?). Empezás con catálogo vacío.", false); }
+  const c = DATA.config || {};
+  cIg.value = c.instagram || ""; cWa.value = c.whatsapp || "";
+  cAnuncio.value = c.anuncio || ""; cDesc.value = c.descuentoTransferencia ?? 20; cCuotas.value = c.cuotas ?? 3;
+  pintarLista();
+}
+if(sessionStorage.getItem("ribAdmin")) iniciar();
+
+function msg(t, ok){ aviso.textContent = t; aviso.className = "aviso " + (ok ? "ok" : "err"); setTimeout(()=>aviso.className="aviso", 6000); window.scrollTo({top:0,behavior:"smooth"}); }
+
+/* ============ LISTA ============ */
+function pintarLista(){
+  cant.textContent = DATA.productos.length + " productos";
+  cats.innerHTML = [...new Set(DATA.productos.map(p=>p.categoria))].map(c=>`<option value="${c}">`).join("");
+  lista.innerHTML = DATA.productos.map((p,i)=>`
+    <div class="prod">
+      <img src="${p.imagenes[0]||""}">
+      <div class="nom"><b>${p.nombre}</b><small>${p.categoria} · $${(+p.precio).toLocaleString("es-AR")} · stock: ${p.stock}</small></div>
+      <div class="acc">
+        <button class="btn-s" onclick="editar(${i})">Editar</button>
+        <button class="btn-d" onclick="borrar(${i})">Eliminar</button>
+      </div>
+    </div>`).join("") || "<p class='mini-help'>Todavía no hay productos. Agregá el primero.</p>";
+}
+function borrar(i){
+  if(confirm(`¿Eliminar "${DATA.productos[i].nombre}"?`)){ DATA.productos.splice(i,1); pintarLista(); msg("Producto eliminado. Recordá publicar los cambios.", true); }
+}
+
+/* ============ EDITOR ============ */
+function editar(i){
+  editIdx = i;
+  const p = i >= 0 ? DATA.productos[i] : {nombre:"",categoria:"",descripcion:"",precio:"",stock:0,nuevo:false,imagenes:[]};
+  editTitulo.textContent = i >= 0 ? "Editar: " + p.nombre : "Nuevo producto";
+  eNombre.value = p.nombre; eCat.value = p.categoria; eDesc.value = p.descripcion;
+  ePrecio.value = p.precio; eStock.value = p.stock; eNuevo.checked = !!p.nuevo;
+  imgsTmp = [...p.imagenes];
+  pintarImgs();
+  editor.classList.remove("oculto");
+  editor.scrollIntoView({behavior:"smooth"});
+}
+function cerrarEditor(){ editor.classList.add("oculto"); }
+
+function pintarImgs(){
+  let h = "";
+  for(let i=0;i<4;i++){
+    if(imgsTmp[i]) h += `<div class="img-slot"><div class="box" onclick="pickImg(${i})"><img src="${imgsTmp[i]}"></div><button class="btn-d quitar" onclick="quitarImg(${i})">Quitar</button></div>`;
+    else{ h += `<div class="img-slot"><div class="box" onclick="pickImg(${i})">+</div></div>`; break; }
+  }
+  imgsEdit.innerHTML = h;
+}
+function pickImg(i){ slotActivo = i; filePick.value = ""; filePick.click(); }
+function quitarImg(i){ imgsTmp.splice(i,1); pintarImgs(); }
+
+filePick.addEventListener("change", async e=>{
+  const f = e.target.files[0]; if(!f) return;
+  const b64 = await comprimir(f);
+  imgsTmp[slotActivo] = b64; pintarImgs();
+});
+function comprimir(file){
+  return new Promise(res=>{
+    const img = new Image();
+    img.onload = ()=>{
+      const M = 900, esc = Math.min(1, M/Math.max(img.width, img.height));
+      const cv = document.createElement("canvas");
+      cv.width = img.width*esc; cv.height = img.height*esc;
+      cv.getContext("2d").drawImage(img,0,0,cv.width,cv.height);
+      res(cv.toDataURL("image/jpeg",.85));
+    };
+    img.src = URL.createObjectURL(file);
+  });
+}
+
+function slug(s){ return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+
+function guardarProducto(){
+  if(!eNombre.value.trim() || !ePrecio.value){ msg("Completá al menos nombre y precio.", false); return; }
+  if(!imgsTmp.length){ msg("Agregá al menos una imagen.", false); return; }
+  const p = {
+    id: editIdx >= 0 ? DATA.productos[editIdx].id : slug(eNombre.value),
+    nombre: eNombre.value.trim(),
+    categoria: eCat.value.trim() || "Accesorios",
+    descripcion: eDesc.value.trim(),
+    precio: +ePrecio.value,
+    stock: +eStock.value || 0,
+    nuevo: eNuevo.checked,
+    imagenes: imgsTmp.filter(Boolean)
+  };
+  if(editIdx >= 0) DATA.productos[editIdx] = p; else DATA.productos.push(p);
+  cerrarEditor(); pintarLista();
+  msg("Producto guardado. Recordá tocar «Publicar en la web» para que se vea online.", true);
+}
+
+/* ============ CONFIG ============ */
+function leerConfig(){
+  DATA.config = {
+    instagram: cIg.value.trim().replace("@",""),
+    whatsapp: cWa.value.trim().replace(/\D/g,""),
+    anuncio: cAnuncio.value.trim(),
+    descuentoTransferencia: +cDesc.value || 0,
+    cuotas: +cCuotas.value || 0
+  };
+}
+
+/* ============ GITHUB ============ */
+function cargarGh(){
+  const g = JSON.parse(localStorage.getItem("ribGh") || "{}");
+  ghUser.value = g.user||""; ghRepo.value = g.repo||""; ghBranch.value = g.branch||"main"; ghToken.value = g.token||"";
+  return g;
+}
+cargarGh();
+function guardarGh(){
+  localStorage.setItem("ribGh", JSON.stringify({user:ghUser.value.trim(), repo:ghRepo.value.trim(), branch:ghBranch.value.trim()||"main", token:ghToken.value.trim()}));
+  msg("Configuración de GitHub guardada en este navegador.", true);
+}
+
+async function ghPut(g, path, contentB64, mensaje){
+  const url = `https://api.github.com/repos/${g.user}/${g.repo}/contents/${path}`;
+  const head = {Authorization:"Bearer "+g.token, Accept:"application/vnd.github+json"};
+  let sha;
+  const r0 = await fetch(url+`?ref=${g.branch}`, {headers:head});
+  if(r0.ok) sha = (await r0.json()).sha;
+  const r = await fetch(url, {method:"PUT", headers:head, body:JSON.stringify({message:mensaje, content:contentB64, branch:g.branch, ...(sha?{sha}:{})})});
+  if(!r.ok) throw new Error((await r.json()).message || r.status);
+}
+
+async function publicar(){
+  leerConfig();
+  const g = cargarGh();
+  if(!g.user || !g.repo || !g.token){
+    msg("Faltan datos de GitHub. Completá la configuración o usá «Descargar products.json».", false); return;
+  }
+  btnPub.disabled = true; btnPub.textContent = "Publicando...";
+  try{
+    // Subir imágenes nuevas (base64) como archivos en img/
+    for(const p of DATA.productos){
+      for(let i=0;i<p.imagenes.length;i++){
+        if(p.imagenes[i].startsWith("data:")){
+          const ruta = `img/${p.id}-${Date.now()}-${i}.jpg`;
+          await ghPut(g, ruta, p.imagenes[i].split(",")[1], "Imagen: "+p.nombre);
+          p.imagenes[i] = ruta;
+        }
+      }
+    }
+    const json = JSON.stringify(DATA, null, 2);
+    await ghPut(g, "products.json", btoa(unescape(encodeURIComponent(json))), "Actualización de catálogo — panel Ribboun");
+    pintarLista();
+    msg("✓ Publicado. Los cambios estarán visibles en la web en 1-2 minutos.", true);
+  }catch(e){
+    msg("Error al publicar: " + e.message + ". Verificá usuario, repositorio y token.", false);
+  }
+  btnPub.disabled = false; btnPub.textContent = "Publicar en la web";
+}
+
+function descargarJson(){
+  leerConfig();
+  const blob = new Blob([JSON.stringify(DATA, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "products.json"; a.click();
+  msg("Archivo descargado. Subilo al repositorio de GitHub reemplazando el products.json existente.", true);
+}
+</script>
+</body>
+</html>
